@@ -1,6 +1,7 @@
-import RPi.GPIO
+import RPi.GPIO as GPIO
 import time
-from rplidar import RPLidar
+from math import floor
+from rplidar import RPLidar, RPLidarException 
 
 GPIO.setmode(GPIO.BCM)
 
@@ -18,19 +19,28 @@ GPIO.setup(in3, GPIO.OUT)
 GPIO.setup(in4, GPIO.OUT)
 GPIO.setup(enb, GPIO.OUT)
 
-p = GPIO.PWM(ena, 500)
-s = GPIO.PWM(enb, 500)
+p = GPIO.PWM(ena, 1000)
+s = GPIO.PWM(enb, 1000)
 
 def forward(num):
+    p.start(100)
+    s.start(100)
     GPIO.output(in1, GPIO.LOW)
     GPIO.output(in2, GPIO.HIGH)
     GPIO.output(in3, GPIO.HIGH)
     GPIO.output(in4, GPIO.LOW)
     time.sleep(num)
+    stop()
+
+def left(num):
+    p.start(100)
+    s.start(100)
     GPIO.output(in1, GPIO.HIGH)
-    GPIO.output(in2, GPIO.HIGH)
+    GPIO.output(in2, GPIO.LOW)
     GPIO.output(in3, GPIO.HIGH)
-    GPIO.output(in4, GPIO.HIGH)
+    GPIO.output(in4, GPIO.LOW)
+    time.sleep(num)
+    stop()
 
 def stop():
     GPIO.output(in1, GPIO.HIGH)
@@ -38,24 +48,46 @@ def stop():
     GPIO.output(in3, GPIO.HIGH)
     GPIO.output(in4, GPIO.HIGH)
 
-lidar = RPLidar('/dev/ttyUSB0')  # Adjust port accordingly
+def check_for_objects(scan):
+    for measurement in scan:
+        angle, quality, distance = measurement
+        print(angle, quality, distance)
+        if distance < 700:
+            return True
+    return False
 
-try:
-    for scan in lidar.iter_scans():
-        for (_, angle, distance) in scan:
-            if distance < 200:  # Adjust the threshold according to your needs
-                # Obstacle detected, stop and avoid
-                stop()
-            else:
-                # No obstacle, continue forward
-                forward(1)
+lidar = RPLidar('/dev/ttyUSB0')
 
-except KeyboardInterrupt:
-    pass
+info = lidar.get_info()
+print(info)
 
-# Clean up GPIO
-GPIO.cleanup()
+health=lidar.get_health()
+print(health)
 
-# Stop RPLIDAR
+lidar.start_motor()
+
+scan_data = [0] * 360
+
+while True:
+    try:
+        forward(1)
+        for scan in lidar.iter_scans(max_buf_meas=5000):
+            for (_, angle, distance) in scan:
+                scan_data.append(distance)
+                non_zero_scan_data = [value for value in scan_data if value!= 0]
+                lidar.clean_input()
+            if min(non_zero_scan_data) < 200:
+                left(2)
+                forward(2)
+    except KeyboardInterrupt:
+        stop()
+        GPIO.cleanup()
+        lidar.clean_input()
+
+    except RPLidarException as e:
+        lidar.clean_input()
+        continue
+
 lidar.stop()
-lidar.disconnect()
+
+#lidar.disconnect()
