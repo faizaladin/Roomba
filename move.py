@@ -3,8 +3,6 @@ import time
 from math import floor
 from rplidar import RPLidar, RPLidarException 
 
-print("hello world")
-
 GPIO.setmode(GPIO.BCM)
 
 ena = 12
