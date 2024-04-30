@@ -95,7 +95,7 @@ def move():
         print(scans)
         for scan in scans:
             for (_, angle, distance) in scan:
-                forward()
+                set_forward(0.5)
                 print("Angle: {}, Distance: {}".format(angle, distance))
                 if distance < 520 and (angle < 15 or angle > 345):
                     obstacle_detected = True
