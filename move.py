@@ -90,6 +90,7 @@ def move():
             for (_, angle, distance) in scan:
                 if distance < 520 and (angle < 15 or angle > 345):
                     obstacle_detected = True
+                    lidar.clean_input()
                     break
                 print("Angle: {}, Distance: {}".format(angle, distance))
             if obstacle_detected:
