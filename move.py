@@ -69,6 +69,7 @@ def check_for_objects(scan):
     return False
 
 def move():
+    print("restart")
     forward()
     for scan in lidar.iter_scans(max_buf_meas=5000):
         print("scans")
