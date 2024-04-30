@@ -1,3 +1,4 @@
+from random import randint
 import RPi.GPIO as GPIO
 import time
 from math import floor
@@ -29,6 +30,19 @@ def forward():
     GPIO.output(in2, GPIO.HIGH)
     GPIO.output(in3, GPIO.HIGH)
     GPIO.output(in4, GPIO.LOW)
+
+def set_forward(num):
+    p.start(25)
+    s.start(25)
+    GPIO.output(in1, GPIO.LOW)
+    GPIO.output(in2, GPIO.HIGH)
+    GPIO.output(in3, GPIO.HIGH)
+    GPIO.output(in4, GPIO.LOW)
+    time.sleep(num)
+    GPIO.output(in1, GPIO.HIGH)
+    GPIO.output(in2, GPIO.HIGH)
+    GPIO.output(in3, GPIO.HIGH)
+    GPIO.output(in4, GPIO.HIGH)
 
 def left(num):
     p.start(25)
@@ -72,7 +86,8 @@ while True:
         for scan in lidar.iter_scans(max_buf_meas=5000):
             for (_, angle, distance) in scan:
                 if distance < 200:
-                    stop()
+                    left(randint(1,4))
+                    set_forward(2)
                     break
                 print("Angle: {}, Distance: {}".format(angle, distance))
     
