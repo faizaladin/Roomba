@@ -84,6 +84,7 @@ while True:
     try:
         print("reset")
         forward()
+        reset_scan = False  # Flag to reset the scanning process
         for scan in lidar.iter_scans(max_buf_meas=5000):
             print("scans")
             for (_, angle, distance) in scan:
@@ -94,8 +95,11 @@ while True:
                     set_forward(2)
                     stop(2)
                     lidar.clean_input()
-                    continue
+                    reset_scan = True  # Set flag to reset the scanning process
+                    break  # Exit the inner loop
                 print("Angle: {}, Distance: {}".format(angle, distance))
+            if reset_scan:
+                break  # Exit the outer loop if scan needs to be reset
     
     except KeyboardInterrupt:
         stop(2)
