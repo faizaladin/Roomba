@@ -90,7 +90,11 @@ def move():
                 set_backward(4)
                 left(randint(1,4))
                 set_forward(2)
-                stop(2)
+                stop(1)
+                lidar.clean_input()  # Clear the scans
+                lidar.reset()  # Reset the lidar
+                stop(1)
+
             else:
                 forward()
             print("Angle: {}, Distance: {}".format(angle, distance))
