@@ -85,7 +85,7 @@ while True:
         forward()
         for scan in lidar.iter_scans(max_buf_meas=5000):
             for (_, angle, distance) in scan:
-                if distance < 200:
+                if distance < 520:
                     left(randint(1,4))
                     set_forward(2)
                     break
