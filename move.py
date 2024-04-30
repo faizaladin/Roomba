@@ -22,15 +22,13 @@ GPIO.setup(enb, GPIO.OUT)
 p = GPIO.PWM(ena, 1000)
 s = GPIO.PWM(enb, 1000)
 
-def forward(num):
+def forward():
     p.start(25)
     s.start(25)
     GPIO.output(in1, GPIO.LOW)
     GPIO.output(in2, GPIO.HIGH)
     GPIO.output(in3, GPIO.HIGH)
     GPIO.output(in4, GPIO.LOW)
-    time.sleep(num)
-    stop()
 
 def left(num):
     p.start(25)
@@ -70,15 +68,14 @@ scan_data = [0] * 360
 
 while True:
     try:
-        forward(1)
+        forward()
         for scan in lidar.iter_scans(max_buf_meas=5000):
             for (_, angle, distance) in scan:
                 scan_data.append(distance)
                 non_zero_scan_data = [value for value in scan_data if value!= 0]
                 lidar.clean_input()
-            if min(non_zero_scan_data) < 200:
-                left(2)
-                forward(2)
+            if min(non_zero_scan_data) < 50:
+                stop()
     except KeyboardInterrupt:
         stop()
         GPIO.cleanup()
