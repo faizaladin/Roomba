@@ -91,7 +91,7 @@ def move():
             if len(scans) == 10:
                 print("hit")
                 break
-        for (_, angle, distance) in scan:
+        for (_, angle, distance) in scans:
             forward()
             print("Angle: {}, Distance: {}".format(angle, distance))
             if distance < 520 and (angle < 15 or angle > 345):
