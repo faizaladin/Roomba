@@ -88,6 +88,7 @@ def move():
         forward()
         print("hit")
         if lidar_stopped:
+            lidar.start_motor()
             lidar.start()
         for scan in lidar.iter_scans(max_buf_meas=5000):
             obstacle_detected = False
@@ -105,6 +106,7 @@ def move():
                 forward()
                 lidar.clean_input()  # Clear lidar input buffer
                 lidar.stop()
+                lidar.stop_motor()
                 lidar_stopped = True
                 time.sleep(1)  # Wait for lidar to reset
                 break  # Exit the loop to restart scanning
