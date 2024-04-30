@@ -91,9 +91,9 @@ def move():
                 left(randint(1,4))
                 set_forward(2)
                 stop(2)
-                return move()
+            else:
+                forward()
             print("Angle: {}, Distance: {}".format(angle, distance))
-    return move()
 
 
 lidar = RPLidar('/dev/ttyUSB0')
