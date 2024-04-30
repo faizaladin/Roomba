@@ -85,6 +85,7 @@ def move():
     print("restart")
     scans = []
     cooldown = False
+    obstacle_detected = False
     while True:  # Loop indefinitely for continuous scanning
         for scan in lidar.iter_scans(max_buf_meas=5000):
             scans.append(scan)
