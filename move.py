@@ -89,7 +89,7 @@ def move():
         for scan in lidar.iter_scans(max_buf_meas=5000):
             scans.append(scan)
             if len(scan) == 10:
-                break
+                continue
         for (_, angle, distance) in scan:
             forward()
             print("Angle: {}, Distance: {}".format(angle, distance))
