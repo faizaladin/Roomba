@@ -96,6 +96,7 @@ def move():
                 lidar.clean_input()
                 break
             print("Angle: {}, Distance: {}".format(angle, distance))
+        break
     move()
 
 
