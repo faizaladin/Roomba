@@ -80,8 +80,9 @@ def move():
                 set_forward(2)
                 stop(2)
                 lidar.clean_input()
-                move()
+                break
             print("Angle: {}, Distance: {}".format(angle, distance))
+    move()
 
 
 lidar = RPLidar('/dev/ttyUSB0')
