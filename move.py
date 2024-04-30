@@ -88,8 +88,8 @@ while True:
                 if distance < 520:
                     left(randint(1,4))
                     set_forward(2)
-                    break
                 print("Angle: {}, Distance: {}".format(angle, distance))
+            break
     
     except KeyboardInterrupt:
         stop()
