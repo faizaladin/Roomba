@@ -86,6 +86,7 @@ def move():
     while True:  # Loop indefinitely for continuous scanning
         forward()
         print("hit")
+        info=lidar.get_info()
         print(info)
         health=lidar.get_health()
         print(health)
