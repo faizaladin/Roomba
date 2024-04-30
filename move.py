@@ -23,8 +23,8 @@ p = GPIO.PWM(ena, 1000)
 s = GPIO.PWM(enb, 1000)
 
 def forward(num):
-    p.start(100)
-    s.start(100)
+    p.start(25)
+    s.start(25)
     GPIO.output(in1, GPIO.LOW)
     GPIO.output(in2, GPIO.HIGH)
     GPIO.output(in3, GPIO.HIGH)
@@ -33,8 +33,8 @@ def forward(num):
     stop()
 
 def left(num):
-    p.start(100)
-    s.start(100)
+    p.start(25)
+    s.start(25)
     GPIO.output(in1, GPIO.HIGH)
     GPIO.output(in2, GPIO.LOW)
     GPIO.output(in3, GPIO.HIGH)
