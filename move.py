@@ -74,6 +74,7 @@ while True:
                 scan_data.append(distance)
                 non_zero_scan_data = [value for value in scan_data if value!= 0]
                 lidar.clean_input()
+            print(min(non_zero_scan_data))
             if min(non_zero_scan_data) < 100:
                 stop()
                 break
