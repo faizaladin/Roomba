@@ -52,7 +52,6 @@ def left(num):
     GPIO.output(in3, GPIO.HIGH)
     GPIO.output(in4, GPIO.LOW)
     time.sleep(num)
-    stop(num)
 
 def stop(num):
     GPIO.output(in1, GPIO.HIGH)
@@ -94,6 +93,8 @@ while True:
                     stop(2)
                     set_forward(2)
                     stop(2)
+                    lidar.clean(input)
+                    break
                 print("Angle: {}, Distance: {}".format(angle, distance))
     
     except KeyboardInterrupt:
