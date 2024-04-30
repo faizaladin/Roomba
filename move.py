@@ -73,32 +73,37 @@ def stop(num):
     GPIO.output(in4, GPIO.HIGH)
     time.sleep(num)
 
+def check_for_objects(scan):
+    for measurement in scan:
+        angle, quality, distance = measurement
+        print(angle, quality, distance)
+        if distance < 700:
+            return True
+    return False
+
 def move():
     print("restart")
-    while True:
+    while True:  # Loop indefinitely for continuous scanning
         forward()
         print("hit")
-        lidar.start_motor()
-        lidar.start()
         for scan in lidar.iter_scans(max_buf_meas=5000):
             obstacle_detected = False
             for (_, angle, distance) in scan:
                 if distance < 520 and (angle < 15 or angle > 345):
                     obstacle_detected = True
-                    lidar.stop_motor()
-                    lidar.clean_input()
                     break
                 print("Angle: {}, Distance: {}".format(angle, distance))
             if obstacle_detected:
                 print("Obstacle detected! Avoiding...")
                 stop(2)
                 set_backward(4)
-                left(randint(2, 5))
-                stop(1)
-                lidar.stop()
-                lidar.clean_input()
-                lidar.reset()
-                break 
+                left(randint(1, 4))
+                print("Continuing movement...")
+                forward()
+                lidar.clean_input()  # Clear lidar input buffer
+                lidar.reset()  # Reset lidar
+                time.sleep(1)  # Wait for lidar to reset
+                break  # Exit the loop to restart scanning
 
 
 lidar = RPLidar('/dev/ttyUSB0')
@@ -116,3 +121,4 @@ while True:
         stop(2)
         GPIO.cleanup()
         lidar.clean_input()
+
