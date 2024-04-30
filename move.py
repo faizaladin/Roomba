@@ -99,12 +99,9 @@ def move():
             set_forward(2)
             print("Continuing movement...")
             forward()
-            lidar.clean_input()  # Clear lidar input buffer
-            lidar.reset()  # Reset lidar
-            time.sleep(1)  # Wait for lidar to reset
-            obstacle_detected = False
-        else:
-            forward()
+        lidar.clean_input()  # Clear lidar input buffer
+        lidar.reset()  # Reset lidar
+        time.sleep(1) 
 
 
 
