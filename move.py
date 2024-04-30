@@ -91,6 +91,7 @@ def move():
             if len(scans) == 10:
                 print("hit")
                 break
+        print(scans)
         for (_, angle, distance) in scans:
             forward()
             print("Angle: {}, Distance: {}".format(angle, distance))
