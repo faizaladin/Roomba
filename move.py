@@ -68,7 +68,7 @@ scan_data = [0] * 360
 
 while True:
     try:
-        forward()
+        #forward()
         for scan in lidar.iter_scans(max_buf_meas=5000):
             for (_, angle, distance) in scan:
                 scan_data.append(distance)
