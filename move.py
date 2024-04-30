@@ -86,15 +86,11 @@ def move():
     while True:  # Loop indefinitely for continuous scanning
         forward()
         print("hit")
-        lidar.clean_input()  # Clear lidar input buffer
-        lidar.reset()
         for scan in lidar.iter_scans(max_buf_meas=5000):
             obstacle_detected = False
             for (_, angle, distance) in scan:
                 if distance < 520 and (angle < 15 or angle > 345):
                     obstacle_detected = True
-                    lidar.clean_input()
-                    lidar.reset()
                     break
                 print("Angle: {}, Distance: {}".format(angle, distance))
             if obstacle_detected:
@@ -109,8 +105,6 @@ def move():
                 lidar.reset()  # Reset lidar
                 time.sleep(1)  # Wait for lidar to reset
                 break  # Exit the loop to restart scanning
-            lidar.clean_input()
-            lidar.reset()
 
 
 lidar = RPLidar('/dev/ttyUSB0')
@@ -121,10 +115,6 @@ print(info)
 health=lidar.get_health()
 print(health)
 
-lidar.start_motor()
-
-scan_data = [0] * 360
-
 while True:
     try:
         move()
@@ -133,6 +123,5 @@ while True:
         GPIO.cleanup()
         lidar.clean_input()
 
-lidar.stop()
 
 #lidar.disconnect()
