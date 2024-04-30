@@ -68,12 +68,12 @@ scan_data = [0] * 360
 
 while True:
     try:
+        forward()
         for scan in lidar.iter_scans(max_buf_meas=5000):
             for (_, angle, distance) in scan:
-                # Process the data here (e.g., detect objects)
-                # You may need to implement logic to identify objects based on distance and angle
-                # Example: if distance < threshold_distance:
-                #              # Object detected, take action
+                if distance < 200:
+                    stop()
+                    break
                 print("Angle: {}, Distance: {}".format(angle, distance))
     
     except KeyboardInterrupt:
