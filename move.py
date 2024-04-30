@@ -86,6 +86,7 @@ def move():
     scans = []
     cooldown = False
     while True:  # Loop indefinitely for continuous scanning
+        forward()
         for scan in lidar.iter_scans(max_buf_meas=5000):
             scans.append(scan)
         for (_, angle, distance) in scan:
