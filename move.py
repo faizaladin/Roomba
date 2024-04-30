@@ -52,7 +52,7 @@ def left(num):
     GPIO.output(in3, GPIO.HIGH)
     GPIO.output(in4, GPIO.LOW)
     time.sleep(num)
-    stop()
+    stop(num)
 
 def stop(num):
     GPIO.output(in1, GPIO.HIGH)
