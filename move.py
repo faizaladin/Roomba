@@ -92,7 +92,7 @@ def move():
                 print("Obstacle detected! Avoiding...")
                 stop(2)
                 set_backward(4)
-                left(randint(1, 4))
+                left(randint(2, 5))
                 stop(1)
                 break 
 
