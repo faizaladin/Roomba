@@ -92,13 +92,14 @@ def move():
                 print("hit")
                 break
         print(scans)
-        for (_, angle, distance) in scans:
-            forward()
-            print("Angle: {}, Distance: {}".format(angle, distance))
-            if distance < 520 and (angle < 15 or angle > 345):
-                obstacle_detected = True
-                break
+        for scan in scans:
+            for (_, angle, distance) in scan:
+                forward()
                 print("Angle: {}, Distance: {}".format(angle, distance))
+                if distance < 520 and (angle < 15 or angle > 345):
+                    obstacle_detected = True
+                    break
+                    print("Angle: {}, Distance: {}".format(angle, distance))
         if obstacle_detected:
             print("Obstacle detected! Avoiding...")
             stop(2)
