@@ -82,10 +82,13 @@ def check_for_objects(scan):
     return False
 
 def move():
+    lidar_stopped = False
     print("restart")
     while True:  # Loop indefinitely for continuous scanning
         forward()
         print("hit")
+        if lidar_stopped:
+            lidar.start()
         for scan in lidar.iter_scans(max_buf_meas=5000):
             obstacle_detected = False
             for (_, angle, distance) in scan:
@@ -101,7 +104,8 @@ def move():
                 print("Continuing movement...")
                 forward()
                 lidar.clean_input()  # Clear lidar input buffer
-                lidar.reset()  # Reset lidar
+                lidar.stop()
+                lidar_stopped = True
                 time.sleep(1)  # Wait for lidar to reset
                 break  # Exit the loop to restart scanning
 
