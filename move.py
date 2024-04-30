@@ -82,14 +82,14 @@ scan_data = [0] * 360
 
 while True:
     try:
-        forward()
         for scan in lidar.iter_scans(max_buf_meas=5000):
             for (_, angle, distance) in scan:
+                forward()
                 if distance < 520:
                     left(randint(1,4))
                     set_forward(2)
+                    break
                 print("Angle: {}, Distance: {}".format(angle, distance))
-            break
     
     except KeyboardInterrupt:
         stop()
