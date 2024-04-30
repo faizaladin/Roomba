@@ -78,15 +78,15 @@ def move():
     while True:
         forward()
         print("hit")
+        lidar.start_motor()
         lidar.start()
         for scan in lidar.iter_scans(max_buf_meas=5000):
             obstacle_detected = False
             for (_, angle, distance) in scan:
                 if distance < 520 and (angle < 15 or angle > 345):
                     obstacle_detected = True
-                    lidar.stop()
+                    lidar.stop_motor()
                     lidar.clean_input()
-                    lidar.reset()
                     break
                 print("Angle: {}, Distance: {}".format(angle, distance))
             if obstacle_detected:
