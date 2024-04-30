@@ -86,6 +86,7 @@ def move():
                     obstacle_detected = True
                     lidar.stop()
                     lidar.clean_input()
+                    lidar.reset()
                     break
                 print("Angle: {}, Distance: {}".format(angle, distance))
             if obstacle_detected:
@@ -94,6 +95,9 @@ def move():
                 set_backward(4)
                 left(randint(2, 5))
                 stop(1)
+                lidar.stop()
+                lidar.clean_input()
+                lidar.reset()
                 break 
 
 
