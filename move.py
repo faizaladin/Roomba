@@ -59,7 +59,7 @@ def stop(num):
     GPIO.output(in2, GPIO.HIGH)
     GPIO.output(in3, GPIO.HIGH)
     GPIO.output(in4, GPIO.HIGH)
-    time.sleep(2)
+    time.sleep(num)
 
 def check_for_objects(scan):
     for measurement in scan:
@@ -86,7 +86,7 @@ while True:
         forward()
         for scan in lidar.iter_scans(max_buf_meas=5000):
             for (_, angle, distance) in scan:
-                if distance < 520 and angle < 15 or angle > 345:
+                if distance < 520 and (angle < 15 or angle > 345):
                     left(randint(1,4))
                     stop(2)
                     set_forward(2)
