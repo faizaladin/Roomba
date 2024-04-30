@@ -108,6 +108,7 @@ def move():
                 lidar.reset()  # Reset lidar
                 time.sleep(1)  # Wait for lidar to reset
                 break  # Exit the loop to restart scanning
+            lidar.clean_input()
 
 
 lidar = RPLidar('/dev/ttyUSB0')
