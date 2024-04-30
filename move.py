@@ -93,7 +93,7 @@ while True:
                     stop(2)
                     set_forward(2)
                     stop(2)
-                    lidar.clean(input)
+                    lidar.clean_input()
                     break
                 print("Angle: {}, Distance: {}".format(angle, distance))
     
