@@ -94,7 +94,7 @@ while True:
                 print("Angle: {}, Distance: {}".format(angle, distance))
     
     except KeyboardInterrupt:
-        stop()
+        stop(2)
         GPIO.cleanup()
         lidar.clean_input()
 
