@@ -100,16 +100,11 @@ def move():
                 stop(2)
                 set_backward(4)
                 left(randint(1, 4))
-                set_forward(2)
                 print("Continuing movement...")
-                forward()
                 lidar.clean_input()  # Clear lidar input buffer
                 lidar.reset()  # Reset lidar
-                cooldown = True  # Set cooldown to True
-                break  # Exit the loop to restart scanning
-        if cooldown:
-            time.sleep(3)  # Cooldown period: 3 seconds
-            cooldown = False  # Reset cooldown after the period
+                time.sleep(2)
+                forward()
 
 
 
