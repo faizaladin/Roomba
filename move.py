@@ -93,12 +93,18 @@ def move():
             print("Angle: {}, Distance: {}".format(angle, distance))
         if obstacle_detected:
             print("Obstacle detected! Avoiding...")
-            lidar.clean_input()
-            lidar.reset()
             stop(2)
             set_backward(4)
             left(randint(1, 4))
+            set_forward(2)
+            print("Continuing movement...")
             forward()
+            lidar.clean_input()  # Clear lidar input buffer
+            lidar.reset()  # Reset lidar
+            time.sleep(1)  # Wait for lidar to reset
+            break  # Exit the loop to restart scanning
+    return move()  # Continue scanning recursively
+
             
 
 
