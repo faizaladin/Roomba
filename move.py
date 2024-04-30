@@ -102,7 +102,8 @@ def move():
             lidar.clean_input()  # Clear lidar input buffer
             lidar.reset()  # Reset lidar
             time.sleep(1)  # Wait for lidar to reset
-            break  # Exit the loop to restart scanning
+        else:
+            forward()
 
 
 
