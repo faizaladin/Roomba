@@ -86,6 +86,8 @@ def move():
     while True:  # Loop indefinitely for continuous scanning
         forward()
         print("hit")
+        lidar.clean_input()  # Clear lidar input buffer
+        lidar.reset()
         for scan in lidar.iter_scans(max_buf_meas=5000):
             obstacle_detected = False
             for (_, angle, distance) in scan:
