@@ -82,23 +82,18 @@ def check_for_objects(scan):
     return False
 
 def move():
-    lidar.start()
     print("restart")
     forward()
     for scan in lidar.iter_scans(max_buf_meas=5000):
-        print("scans")
         for (_, angle, distance) in scan:
-            print("check scan")
+            print("Angle: {}, Distance: {}".format(angle, distance))
             if distance < 520 and (angle < 15 or angle > 345):
                 set_backward(4)
                 left(randint(1,4))
                 set_forward(2)
                 stop(2)
-                lidar.stop()
-                lidar.clean_input()
-                lidar.reset()
-                return move()
-            print("Angle: {}, Distance: {}".format(angle, distance))
+                break
+        return move()
     return move()
 
 
@@ -121,9 +116,6 @@ while True:
         stop(2)
         GPIO.cleanup()
         lidar.clean_input()
-    except RPLidarException as e:
-        lidar.clean_input()
-        continue
 
 lidar.stop()
 
