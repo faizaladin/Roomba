@@ -86,12 +86,12 @@ def move():
     scans = []
     cooldown = False
     while True:  # Loop indefinitely for continuous scanning
-        #forward()
         for scan in lidar.iter_scans(max_buf_meas=5000):
             scans.append(scan)
-            print(scans)
+            if len(scan) == 10:
+                break
         for (_, angle, distance) in scan:
-            #forward()
+            forward()
             print("Angle: {}, Distance: {}".format(angle, distance))
             if distance < 520 and (angle < 15 or angle > 345):
                 obstacle_detected = True
