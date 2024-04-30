@@ -83,42 +83,27 @@ def check_for_objects(scan):
 
 def move():
     print("restart")
-    scans = []
-    cooldown = False
-    obstacle_detected = False
     while True:  # Loop indefinitely for continuous scanning
+        forward()
         for scan in lidar.iter_scans(max_buf_meas=5000):
-            scans.append(scan)
-            if len(scans) == 10:
-                print("hit")
-                break
-        print(scans)
-        for scan in scans:
+            obstacle_detected = False
             for (_, angle, distance) in scan:
-                set_forward(0.5)
-                print("Angle: {}, Distance: {}".format(angle, distance))
                 if distance < 520 and (angle < 15 or angle > 345):
                     obstacle_detected = True
                     break
-                    print("Angle: {}, Distance: {}".format(angle, distance))
-        if obstacle_detected:
-            print("Obstacle detected! Avoiding...")
-            stop(2)
-            set_backward(4)
-            left(randint(1, 4))
-            print("Continuing movement...")
-            lidar.clean_input()  # Clear lidar input buffer
-            lidar.reset()  # Reset lidar
-            time.sleep(2)
-            forward()
-        else:
-            forward()
-
-
-
-            
-
-
+                print("Angle: {}, Distance: {}".format(angle, distance))
+            if obstacle_detected:
+                print("Obstacle detected! Avoiding...")
+                stop(2)
+                set_backward(4)
+                left(randint(1, 4))
+                set_forward(2)
+                print("Continuing movement...")
+                forward()
+                lidar.clean_input()  # Clear lidar input buffer
+                lidar.reset()  # Reset lidar
+                time.sleep(1)  # Wait for lidar to reset
+                break  # Exit the loop to restart scanning
 
 
 lidar = RPLidar('/dev/ttyUSB0')
