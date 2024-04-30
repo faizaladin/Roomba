@@ -74,8 +74,9 @@ while True:
                 scan_data.append(distance)
                 non_zero_scan_data = [value for value in scan_data if value!= 0]
                 lidar.clean_input()
-            if min(non_zero_scan_data) < 50:
+            if min(non_zero_scan_data) < 100:
                 stop()
+                break
     except KeyboardInterrupt:
         stop()
         GPIO.cleanup()
