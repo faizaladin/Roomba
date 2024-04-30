@@ -89,14 +89,15 @@ def move():
         for (_, angle, distance) in scan:
             print("check scan")
             if distance < 520 and (angle < 15 or angle > 345):
-                set_backward(2)
+                set_backward(4)
                 left(randint(1,4))
                 set_forward(2)
                 stop(2)
                 lidar.clean_input()
-                move()
+                #lidar.reset()
+                return move()
             print("Angle: {}, Distance: {}".format(angle, distance))
-    move()
+    return move()
 
 
 lidar = RPLidar('/dev/ttyUSB0')
