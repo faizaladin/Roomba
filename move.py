@@ -88,8 +88,9 @@ def move():
     while True:  # Loop indefinitely for continuous scanning
         for scan in lidar.iter_scans(max_buf_meas=5000):
             scans.append(scan)
-            if len(scan) == 10:
-                continue
+            if len(scans) == 10:
+                print("hit")
+                break
         for (_, angle, distance) in scan:
             forward()
             print("Angle: {}, Distance: {}".format(angle, distance))
