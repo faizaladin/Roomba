@@ -83,12 +83,15 @@ def check_for_objects(scan):
 
 def move():
     print("restart")
+    cooldown = False
     while True:  # Loop indefinitely for continuous scanning
         forward()
         for scan in lidar.iter_scans(max_buf_meas=5000):
             obstacle_detected = False
             for (_, angle, distance) in scan:
-                if distance < 300 and (angle < 15 or angle > 345):
+                if cooldown:  # If in cooldown, skip detection
+                    continue
+                if distance < 520 and (angle < 15 or angle > 345):
                     obstacle_detected = True
                     break
                 print("Angle: {}, Distance: {}".format(angle, distance))
@@ -102,8 +105,12 @@ def move():
                 forward()
                 lidar.clean_input()  # Clear lidar input buffer
                 lidar.reset()  # Reset lidar
-                time.sleep(1)  # Wait for lidar to reset
+                cooldown = True  # Set cooldown to True
                 break  # Exit the loop to restart scanning
+        if cooldown:
+            time.sleep(3)  # Cooldown period: 3 seconds
+            cooldown = False  # Reset cooldown after the period
+
 
 
             
