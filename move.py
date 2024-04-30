@@ -94,7 +94,7 @@ while True:
                     set_forward(2)
                     stop(2)
                     lidar.clean_input()
-                    break
+                    continue
                 print("Angle: {}, Distance: {}".format(angle, distance))
     
     except KeyboardInterrupt:
