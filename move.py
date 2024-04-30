@@ -68,16 +68,14 @@ scan_data = [0] * 360
 
 while True:
     try:
-        #forward()
         for scan in lidar.iter_scans(max_buf_meas=5000):
             for (_, angle, distance) in scan:
-                scan_data.append(distance)
-                non_zero_scan_data = [value for value in scan_data if value!= 0]
-                lidar.clean_input()
-            print(min(non_zero_scan_data))
-            if min(non_zero_scan_data) < 100:
-                stop()
-                break
+                # Process the data here (e.g., detect objects)
+                # You may need to implement logic to identify objects based on distance and angle
+                # Example: if distance < threshold_distance:
+                #              # Object detected, take action
+                print("Angle: {}, Distance: {}".format(angle, distance))
+    
     except KeyboardInterrupt:
         stop()
         GPIO.cleanup()
