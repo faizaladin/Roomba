@@ -85,6 +85,7 @@ def move():
     lidar = RPLidar('/dev/ttyUSB0')
     while True:  # Loop indefinitely for continuous scanning
         forward()
+        lidar.clean_input()
         print("hit")
         info=lidar.get_info()
         print(info)
