@@ -44,6 +44,19 @@ def set_forward(num):
     GPIO.output(in3, GPIO.HIGH)
     GPIO.output(in4, GPIO.HIGH)
 
+def set_backward(num):
+    p.start(25)
+    s.start(25)
+    GPIO.output(in1, GPIO.HIGH)
+    GPIO.output(in2, GPIO.LOW)
+    GPIO.output(in3, GPIO.LOW)
+    GPIO.output(in4, GPIO.HIGH)
+    time.sleep(num)
+    GPIO.output(in1, GPIO.HIGH)
+    GPIO.output(in2, GPIO.HIGH)
+    GPIO.output(in3, GPIO.HIGH)
+    GPIO.output(in4, GPIO.HIGH)
+
 def left(num):
     p.start(25)
     s.start(25)
@@ -76,8 +89,8 @@ def move():
         for (_, angle, distance) in scan:
             print("check scan")
             if distance < 520 and (angle < 15 or angle > 345):
+                set_backward(2)
                 left(randint(1,4))
-                stop(2)
                 set_forward(2)
                 stop(2)
                 lidar.clean_input()
