@@ -68,6 +68,22 @@ def check_for_objects(scan):
             return True
     return False
 
+def move():
+    forward()
+    for scan in lidar.iter_scans(max_buf_meas=5000):
+        print("scans")
+        for (_, angle, distance) in scan:
+            print("check scan")
+            if distance < 520 and (angle < 15 or angle > 345):
+                left(randint(1,4))
+                stop(2)
+                set_forward(2)
+                stop(2)
+                lidar.clean_input()
+                move()
+            print("Angle: {}, Distance: {}".format(angle, distance))
+
+
 lidar = RPLidar('/dev/ttyUSB0')
 
 info = lidar.get_info()
@@ -82,30 +98,11 @@ scan_data = [0] * 360
 
 while True:
     try:
-        print("reset")
-        forward()
-        reset_scan = False  # Flag to reset the scanning process
-        for scan in lidar.iter_scans(max_buf_meas=5000):
-            print("scans")
-            for (_, angle, distance) in scan:
-                print("check scan")
-                if distance < 520 and (angle < 15 or angle > 345):
-                    left(randint(1,4))
-                    stop(2)
-                    set_forward(2)
-                    stop(2)
-                    lidar.clean_input()
-                    reset_scan = True  # Set flag to reset the scanning process
-                    break  # Exit the inner loop
-                print("Angle: {}, Distance: {}".format(angle, distance))
-            if reset_scan:
-                break  # Exit the outer loop if scan needs to be reset
-    
+        move()
     except KeyboardInterrupt:
         stop(2)
         GPIO.cleanup()
         lidar.clean_input()
-
     except RPLidarException as e:
         lidar.clean_input()
         continue
