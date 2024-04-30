@@ -94,6 +94,7 @@ def move():
                 if distance < 520 and (angle < 15 or angle > 345):
                     obstacle_detected = True
                     lidar.clean_input()
+                    lidar.reset()
                     break
                 print("Angle: {}, Distance: {}".format(angle, distance))
             if obstacle_detected:
@@ -109,6 +110,7 @@ def move():
                 time.sleep(1)  # Wait for lidar to reset
                 break  # Exit the loop to restart scanning
             lidar.clean_input()
+            lidar.reset()
 
 
 lidar = RPLidar('/dev/ttyUSB0')
