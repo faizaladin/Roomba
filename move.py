@@ -82,6 +82,7 @@ def check_for_objects(scan):
     return False
 
 def move():
+    lidar.start()
     print("restart")
     forward()
     for scan in lidar.iter_scans(max_buf_meas=5000):
@@ -93,8 +94,9 @@ def move():
                 left(randint(1,4))
                 set_forward(2)
                 stop(2)
+                lidar.stop()
                 lidar.clean_input()
-                #lidar.reset()
+                lidar.reset()
                 return move()
             print("Angle: {}, Distance: {}".format(angle, distance))
     return move()
