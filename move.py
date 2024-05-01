@@ -32,8 +32,8 @@ def forward():
     GPIO.output(in4, GPIO.LOW)
 
 def set_forward(num):
-    p.start(40)
-    s.start(40)
+    p.start(25)
+    s.start(25)
     GPIO.output(in1, GPIO.LOW)
     GPIO.output(in2, GPIO.HIGH)
     GPIO.output(in3, GPIO.HIGH)
@@ -82,12 +82,23 @@ def check_for_objects(scan):
     return False
 
 def spiral():
+    lidar = RPLidar('/dev/ttyUSB0')
     #lidar = RPLidar('/dev/ttyUSB0')
     counter = 0.5
     while True:
         set_forward(counter)
         left(0.5)
         counter += 0.5
+        lidar.clean_input()
+        print("hit")
+        info=lidar.get_info()
+        print(info)
+        health=lidar.get_health()
+        for scan in lidar.iter_scans(max_buf_meas=5000):
+            obstacle_detected = False
+            for (_, angle, distance) in scan:
+                if distance < 550 and (angle < 15 or angle > 345):
+                    return move()
 
 def move():
     lidar = RPLidar('/dev/ttyUSB0')
