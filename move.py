@@ -85,8 +85,8 @@ def spiral():
     #lidar = RPLidar('/dev/ttyUSB0')
     counter = 0.5
     while True:
-        set_forward(0.5)
-        left(0.5)
+        set_forward(counter)
+        left(counter))
         counter += 0.5
 
 def move():
