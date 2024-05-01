@@ -83,12 +83,14 @@ def check_for_objects(scan):
 
 def spiral():
     lidar = RPLidar('/dev/ttyUSB0')
+    #lidar.motor_speed(50)
     counter = 0.5
     lidar_stopped = False
     while True:
         info=lidar.get_info()
         print(info)
         health=lidar.get_health()
+        lidar.clean_input()
         for scan in lidar.iter_scans(max_buf_meas=5000):
             for (_, angle, distance) in scan:
                 print("Angle: {}, Distance: {}".format(angle, distance))
@@ -98,17 +100,18 @@ def spiral():
                     lidar.stop_motor()
                     lidar.disconect()
                     return move()
-        set_forward(counter)
-        left(0.5)
-        counter += 0.5
-        time.sleep(1)
-        lidar.clean_input()
-        print("cleaning input")
-        lidar.reset()
-        print("resetting lidar")
-        time.sleep(1)
-        lidar.start(scan_type='express')
-        print("starting scan process in express mode")
+            set_forward(counter)
+            left(0.5)
+            counter += 0.5
+            time.sleep(1)
+            lidar.clean_input()
+            print("cleaning input")
+            lidar.reset()
+            print("resetting lidar")
+            time.sleep(1)
+            lidar.start(scan_type='express')
+            print("starting scan process in express mode")
+            break
 
 
 def move():
