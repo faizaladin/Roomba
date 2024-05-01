@@ -100,8 +100,8 @@ def spiral():
                     lidar.stop_motor()
                     lidar.disconect()
                     return move()
-            set_forward(counter)
             left(0.5)
+            set_forward(counter)
             counter += 0.5
             time.sleep(1)
             lidar.clean_input()
@@ -109,8 +109,8 @@ def spiral():
             lidar.reset()
             print("resetting lidar")
             time.sleep(1)
-            lidar.start(scan_type='express')
-            print("starting scan process in express mode")
+            lidar.start()
+            print("starting scan process")
             break
 
 
