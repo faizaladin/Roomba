@@ -83,8 +83,8 @@ def check_for_objects(scan):
 
 def spiral():
     lidar = RPLidar('/dev/ttyUSB0')
-    #lidar = RPLidar('/dev/ttyUSB0')
     counter = 0.5
+    lidar_stopped = False
     while True:
         lidar.clean_input()
         print("hit")
@@ -93,10 +93,10 @@ def spiral():
         health=lidar.get_health()
         set_forward(counter)
         left(0.5)
-        lidar_stopped = False
         if lidar_stopped:
             lidar.start_motor()
             lidar.start()
+            lidar_stopped = False
         for scan in lidar.iter_scans(max_buf_meas=5000):
             for (_, angle, distance) in scan:
                 if distance < 550 and (angle < 15 or angle > 345):
