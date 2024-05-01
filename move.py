@@ -101,6 +101,7 @@ def spiral():
                     set_forward(counter)
                     left(0.5)
                     counter += 0.5
+                    lidar.clean_input()
                 print("Angle: {}, Distance: {}".format(angle, distance))
 
 
