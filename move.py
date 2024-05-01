@@ -101,6 +101,7 @@ def spiral():
             set_forward(counter)
             left(0.5)
             counter += 0.5
+            time.sleep(1)
 
 
 def move():
