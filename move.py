@@ -83,8 +83,8 @@ def check_for_objects(scan):
 
 def move():
     lidar = RPLidar('/dev/ttyUSB0')
-    counter = 1
     while True:  # Loop indefinitely for continuous scanning
+        forward()
         lidar.clean_input()
         print("hit")
         info=lidar.get_info()
@@ -115,6 +115,8 @@ def move():
                 lidar_stopped = True
                 time.sleep(1)  # Wait for lidar to reset
                 break  # Exit the loop to restart scanning
+            else:
+                
 
 while True:
     try:
