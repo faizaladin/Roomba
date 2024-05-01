@@ -100,6 +100,7 @@ def spiral():
         for scan in lidar.iter_scans(max_buf_meas=5000):
             for (_, angle, distance) in scan:
                 if distance < 550 and (angle < 15 or angle > 345):
+                    print("object detected")
                     return move()
                 else:
                     print("in else statement")
