@@ -102,6 +102,7 @@ def spiral():
                 if distance < 550 and (angle < 15 or angle > 345):
                     return move()
                 else:
+                    print("in else statement")
                     set_forward(counter)
                     left(0.5)
                     counter += 0.5
@@ -110,6 +111,7 @@ def spiral():
                     lidar.stop_motor()
                     lidar_stopped = True
                     time.sleep(1)
+                    break
                 print("Angle: {}, Distance: {}".format(angle, distance))
 
 
