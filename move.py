@@ -109,9 +109,6 @@ def spiral():
                     lidar.stop_motor()
                     lidar.disconect()
                     return move()
-            left(0.5)
-            set_forward(counter)
-            counter += 0.5
             lidar.clean_input()  # Clear lidar input buffer
             lidar.stop()
             lidar.stop_motor()
