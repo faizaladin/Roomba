@@ -32,8 +32,8 @@ def forward():
     GPIO.output(in4, GPIO.LOW)
 
 def set_forward(num):
-    p.start(25)
-    s.start(25)
+    p.start(40)
+    s.start(40)
     GPIO.output(in1, GPIO.LOW)
     GPIO.output(in2, GPIO.HIGH)
     GPIO.output(in3, GPIO.HIGH)
@@ -58,8 +58,8 @@ def set_backward(num):
     GPIO.output(in4, GPIO.HIGH)
 
 def left(num):
-    p.start(25)
-    s.start(25)
+    p.start(50)
+    s.start(50)
     GPIO.output(in1, GPIO.HIGH)
     GPIO.output(in2, GPIO.LOW)
     GPIO.output(in3, GPIO.HIGH)
