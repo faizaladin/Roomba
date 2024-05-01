@@ -32,8 +32,8 @@ def forward():
     GPIO.output(in4, GPIO.LOW)
 
 def set_forward(num):
-    p.start(25)
-    s.start(25)
+    p.start(40)
+    s.start(40)
     GPIO.output(in1, GPIO.LOW)
     GPIO.output(in2, GPIO.HIGH)
     GPIO.output(in3, GPIO.HIGH)
@@ -95,6 +95,7 @@ def spiral():
         left(0.5)
         set_forward(counter)
         counter += 0.5
+        lidar.clean_input()
         for scan in lidar.iter_scans(max_buf_meas=5000):
             for (_, angle, distance) in scan:
                 print("Angle: {}, Distance: {}".format(angle, distance))
