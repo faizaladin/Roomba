@@ -81,6 +81,14 @@ def check_for_objects(scan):
             return True
     return False
 
+def spiral():
+    #lidar = RPLidar('/dev/ttyUSB0')
+    counter = 0.5
+    while True:
+        set_forward(0.5)
+        left(0.5)
+        counter += 0.5
+
 def move():
     lidar = RPLidar('/dev/ttyUSB0')
     while True:  # Loop indefinitely for continuous scanning
@@ -120,7 +128,7 @@ def move():
 
 while True:
     try:
-        move()
+        spiral()
     except KeyboardInterrupt:
         stop(2)
         GPIO.cleanup()
