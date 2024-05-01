@@ -98,6 +98,9 @@ def spiral():
                 if distance < 550 and (angle < 15 or angle > 345):
                     print("object detected")
                     return move()
+            set_forward(counter)
+            left(0.5)
+            counter += 0.5
 
 
 def move():
