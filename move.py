@@ -104,7 +104,6 @@ def spiral():
                 else:
                     print("in else statement")
                     set_forward(counter)
-                    left(0.5)
                     counter += 0.5
                     lidar.clean_input()
                     lidar.stop()
