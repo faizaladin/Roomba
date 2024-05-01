@@ -94,14 +94,20 @@ def spiral():
                 print("Angle: {}, Distance: {}".format(angle, distance))
                 if distance < 550 and (angle < 15 or angle > 345):
                     print("object detected")
+                    lidar.stop()
+                    lidar.stop_motor()
+                    lidar.disconect()
                     return move()
         set_forward(counter)
         left(0.5)
         counter += 0.5
         time.sleep(1)
         lidar.clean_input()
+        print("cleaning input")
         lidar.reset()
-        lidar.start()
+        print("resetting lidar")
+        lidar.start(scan_type='express')
+        print("starting scan process in express mode")
 
 
 def move():
