@@ -86,8 +86,6 @@ def spiral():
     counter = 0.5
     lidar_stopped = False
     while True:
-        lidar.clean_input()
-        print("hit")
         info=lidar.get_info()
         print(info)
         health=lidar.get_health()
@@ -100,11 +98,6 @@ def spiral():
                 if distance < 550 and (angle < 15 or angle > 345):
                     print("object detected")
                     return move()
-                else:
-                    print("in else statement")
-                    set_forward(counter)
-                    counter += 0.5
-                    time.sleep(1)
 
 
 def move():
