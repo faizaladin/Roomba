@@ -93,7 +93,6 @@ def spiral():
         health=lidar.get_health()
         set_forward(counter)
         left(0.5)
-        lidar_stopped = False
         if lidar_stopped:
             lidar.start_motor()
             lidar.start()
