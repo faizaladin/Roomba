@@ -92,6 +92,9 @@ def spiral():
         health=lidar.get_health()
         lidar.clean_input()
         print("moving")
+        lidar.stop()
+        time.sleep(1)
+        lidar.start()
         left(0.5)
         set_forward(counter)
         counter += 0.5
