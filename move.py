@@ -58,8 +58,8 @@ def set_backward(num):
     GPIO.output(in4, GPIO.HIGH)
 
 def left(num):
-    p.start(50)
-    s.start(50)
+    p.start(25)
+    s.start(25)
     GPIO.output(in1, GPIO.HIGH)
     GPIO.output(in2, GPIO.LOW)
     GPIO.output(in3, GPIO.HIGH)
@@ -91,14 +91,15 @@ def spiral():
         info=lidar.get_info()
         print(info)
         health=lidar.get_health()
+        set_forward(counter)
+        left(0.5)
+        counter += 0.5
         for scan in lidar.iter_scans(max_buf_meas=5000):
-            set_forward(counter)
-            left(0.5)
-            counter += 0.5
             for (_, angle, distance) in scan:
                 if distance < 550 and (angle < 15 or angle > 345):
                     return move()
                 print("Angle: {}, Distance: {}".format(angle, distance))
+
 
 def move():
     lidar = RPLidar('/dev/ttyUSB0')
