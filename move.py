@@ -107,7 +107,7 @@ def spiral():
                     print("object detected")
                     lidar.stop()
                     lidar.stop_motor()
-                    lidar.disconect()
+                    lidar.disconnect()
                     return move()
             lidar.clean_input()  # Clear lidar input buffer
             lidar.stop()
