@@ -109,12 +109,6 @@ def spiral():
             set_forward(counter)
             counter += 0.5
             lidar.clean_input()
-            print("cleaning input")
-            lidar.stop()
-            print("resetting lidar")
-            time.sleep(1)
-            lidar.start()
-            lidar.clean_input()
             print("starting scan process")
             break
 
