@@ -93,11 +93,14 @@ def spiral():
         health=lidar.get_health()
         set_forward(counter)
         left(0.5)
-        counter += 0.5
         for scan in lidar.iter_scans(max_buf_meas=5000):
             for (_, angle, distance) in scan:
                 if distance < 550 and (angle < 15 or angle > 345):
                     return move()
+                else:
+                    set_forward(counter)
+                    left(0.5)
+                    counter += 0.5
                 print("Angle: {}, Distance: {}".format(angle, distance))
 
 
