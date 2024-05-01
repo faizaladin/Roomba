@@ -106,6 +106,7 @@ def spiral():
         print("cleaning input")
         lidar.reset()
         print("resetting lidar")
+        time.sleep(1)
         lidar.start(scan_type='express')
         print("starting scan process in express mode")
 
