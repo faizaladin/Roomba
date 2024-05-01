@@ -86,19 +86,19 @@ def spiral():
     #lidar = RPLidar('/dev/ttyUSB0')
     counter = 0.5
     while True:
-        set_forward(counter)
-        left(0.5)
-        counter += 0.5
         lidar.clean_input()
         print("hit")
         info=lidar.get_info()
         print(info)
         health=lidar.get_health()
         for scan in lidar.iter_scans(max_buf_meas=5000):
-            obstacle_detected = False
+            set_forward(counter)
+            left(0.5)
+            counter += 0.5
             for (_, angle, distance) in scan:
                 if distance < 550 and (angle < 15 or angle > 345):
                     return move()
+                print("Angle: {}, Distance: {}".format(angle, distance))
 
 def move():
     lidar = RPLidar('/dev/ttyUSB0')
