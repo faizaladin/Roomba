@@ -125,12 +125,6 @@ def move():
                 break  # Exit the loop to restart scanning
             else:
                 
-
 while True:
-    try:
-        spiral()
-    except KeyboardInterrupt:
-        stop(2)
-        GPIO.cleanup()
-        lidar.clean_input()
+    spiral()
 
