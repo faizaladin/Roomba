@@ -123,8 +123,12 @@ def move():
                 lidar_stopped = True
                 time.sleep(1)  # Wait for lidar to reset
                 break  # Exit the loop to restart scanning
-            else:
                 
 while True:
-    spiral()
+    try:
+        spiral()
+    except KeyboardInterrupt:
+        stop(2)
+        GPIO.cleanup()
+        lidar.clean_input()
 
