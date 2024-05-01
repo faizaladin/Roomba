@@ -86,7 +86,7 @@ def spiral():
     counter = 0.5
     while True:
         set_forward(counter)
-        left(counter)
+        left(0.5)
         counter += 0.5
 
 def move():
