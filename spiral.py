@@ -100,21 +100,21 @@ def spiral():
         # if lidar_stopped:
         #     lidar.start_motor()
         #     lidar.start()
-        # for scan in lidar.iter_scans(max_buf_meas=4000):
-        #     for (_, angle, distance) in scan:
-        #         print("Angle: {}, Distance: {}".format(angle, distance))
-        #         if distance < 550 and (angle < 15 or angle > 345):
-        #             print("object detected")
-        #             lidar.stop()
-        #             lidar.stop_motor()
-        #             lidar.disconnect()
-        #             return move()
-        #     lidar.clean_input()  # Clear lidar input buffer
-        #     lidar.stop()
-        #     lidar.stop_motor()
-        #     lidar_stopped = True
-        #     time.sleep(2)
-        #     break
+        for scan in lidar.iter_scans(max_buf_meas=3000):
+            for (_, angle, distance) in scan:
+                print("Angle: {}, Distance: {}".format(angle, distance))
+                if distance < 550 and (angle < 15 or angle > 345):
+                    print("object detected")
+                    lidar.stop()
+                    lidar.stop_motor()
+                    lidar.disconnect()
+                    return move()
+            # lidar.clean_input()  # Clear lidar input buffer
+            # lidar.stop()
+            # lidar.stop_motor()
+            # lidar_stopped = True
+            # time.sleep(2)
+            break
 
 
 def move():
