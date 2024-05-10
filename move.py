@@ -89,7 +89,7 @@ def spiral():
     while True:
         left(0.5)
         set_forward(counter)
-        counter += 0.1
+        counter += 0.5
         lidar.clean_input()
         print("hit")
         info=lidar.get_info()
