@@ -117,7 +117,10 @@ def spiral():
             lidar.clean_input()  # Clear lidar input buffer
             lidar.stop()
             lidar.stop_motor()
-            break
+            lidar.clean_input()
+            time.sleep(2)
+            lidar.start_motor()
+            lidar.start()
             # lidar_stopped = True
             # time.sleep(2)
 
