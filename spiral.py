@@ -100,6 +100,8 @@ def spiral():
         # if lidar_stopped:
         #     lidar.start_motor()
         #     lidar.start()
+        lidar.start_motor()
+        lidar.start()
         for scan in lidar.iter_scans(max_buf_meas=5000):
             for (_, angle, distance) in scan:
                 print("Angle: {}, Distance: {}".format(angle, distance))
@@ -113,8 +115,9 @@ def spiral():
             set_forward(counter)
             counter += 0.3
             lidar.clean_input()  # Clear lidar input buffer
-            # lidar.stop()
-            # lidar.stop_motor()
+            lidar.stop()
+            lidar.stop_motor()
+            break
             # lidar_stopped = True
             # time.sleep(2)
 
