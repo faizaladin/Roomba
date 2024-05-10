@@ -92,9 +92,9 @@ def spiral():
         counter += 0.2
         # lidar.clean_input()
         # print("hit")
-        # info=lidar.get_info()
+        info=lidar.get_info()
         # print(info)
-        # health=lidar.get_health()
+        health=lidar.get_health()
         # print(health)
         # lidar_stopped = False
         # if lidar_stopped:
@@ -111,7 +111,7 @@ def spiral():
                     return move()
             left(0.5)
             set_forward(counter)
-            counter += 0.2
+            counter += 0.3
             lidar.clean_input()  # Clear lidar input buffer
             # lidar.stop()
             # lidar.stop_motor()
