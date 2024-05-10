@@ -107,6 +107,10 @@ def spiral():
                 print("Angle: {}, Distance: {}".format(angle, distance))
             if obstacle_detected:
                 move()
+            else:
+                left(0.5)
+                set_forward(counter)
+                counter += 0.2
 
 
 def move():
