@@ -98,7 +98,7 @@ def spiral():
         if lidar_stopped:
             lidar.start_motor()
             lidar.start()
-        for scan in lidar.iter_scans(max_buf_meas=5000):
+        for scan in lidar.iter_scans(max_buf_meas=4000):
             obstacle_detected = False
             for (_, angle, distance) in scan:
                 if distance < 450 and (angle < 20 or angle > 340):
