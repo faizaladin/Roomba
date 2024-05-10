@@ -83,13 +83,11 @@ def check_for_objects(scan):
 
 def spiral():
     lidar = RPLidar('/dev/ttyUSB0')
-    #lidar.motor_speed(50)
     counter = 0.5
-    lidar_stopped = False
-    while True:
+    while True:  # Loop indefinitely for continuous scanning
         left(0.5)
         set_forward(counter)
-        counter += 0.5
+        counter += 0.2
         lidar.clean_input()
         print("hit")
         info=lidar.get_info()
@@ -100,21 +98,15 @@ def spiral():
         if lidar_stopped:
             lidar.start_motor()
             lidar.start()
-        for scan in lidar.iter_scans(max_buf_meas=4000):
+        for scan in lidar.iter_scans(max_buf_meas=5000):
+            obstacle_detected = False
             for (_, angle, distance) in scan:
+                if distance < 450 and (angle < 20 or angle > 340):
+                    obstacle_detected = True
+                    break
                 print("Angle: {}, Distance: {}".format(angle, distance))
-                if distance < 550 and (angle < 15 or angle > 345):
-                    print("object detected")
-                    lidar.stop()
-                    lidar.stop_motor()
-                    lidar.disconnect()
-                    return move()
-            lidar.clean_input()  # Clear lidar input buffer
-            lidar.stop()
-            lidar.stop_motor()
-            lidar_stopped = True
-            time.sleep(2)
-            break
+            if obstacle_detected:
+                move()
 
 
 def move():
@@ -154,7 +146,7 @@ def move():
                 
 while True:
     try:
-        move()
+        spiral()
     except KeyboardInterrupt:
         stop(2)
         GPIO.cleanup()
