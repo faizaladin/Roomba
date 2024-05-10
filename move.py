@@ -154,7 +154,7 @@ def move():
                 
 while True:
     try:
-        spiral()
+        move()
     except KeyboardInterrupt:
         stop(2)
         GPIO.cleanup()
