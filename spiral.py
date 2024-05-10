@@ -114,7 +114,6 @@ def spiral():
             # lidar.stop_motor()
             # lidar_stopped = True
             # time.sleep(2)
-            break
 
 
 def move():
