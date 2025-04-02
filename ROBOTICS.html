@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> A/V to Spotify </title>
+       <meta charset="UTF = 8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <style>
+        .divcontainer{
+            border: 1px solid grey;
+            margin: 40px;
+            border-radius: 14px;
+        }
+        table, th, td, tr {
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        hr{
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+       </style>
+    </head>
+    <body>
+        <h1 style = "text-align: center">Faiz and Miles Robotics Project</h1>
+        <hr>
+        <div class = "divcontainer">
+            <h1 style = "padding-left: 4px;">
+                Maiz Bot: Autonomous Vacuum Bot
+            </h1>
+            <p style = "padding-left: 4px">
+                Our goal for this project is to create an autonomous 
+                vacuum that can clean in any environment it is placed in, 
+                similar and inspired by a Roomba. This entails the robot 
+                to be able to detect and avoid obstacles that it cannot 
+                clear, such as toys or certain furniture, and detect 
+                obstacles it can go under and clean, like table chairs 
+                and things of the like. Our robot will rely on 2D-LIDAR 
+                to sense and create a map of its surroundings, as well as 
+                know its own location in a given room. The LIDAR will also
+                perform avoidance in a situation where it bumps into an 
+                obstacle or wall and needs to pivot. 
+                It will use two wheels as its effectors, and have a vacuum 
+                box mounted under it to collect the debris it passes over. 
+                Lastly, the robot will move in a spiral manner where 
+                it starts in the center and works its way through the space 
+                avoiding obstacles.  
+                <br>
+                Here is a link to a zip file of our code:
+            </p>
+            <a style = "padding-left: 20px" href="Roomba-main.zip">Code!</a>
+        </div> 
+        <div class = "divcontainer">
+                <img style = "padding-left: 5px; padding-top: 5px; border-radius: 8px;" src=roomba1.jpg alt=" image" width="500" height="350">
+                <p>
+                    03/04 - This is our robot body with the DC Motors in place. 
+                    This form is only temporary while the 3D printer is broken.  
+                </p>
+                <hr>
+                <img style = "padding-left: 5px; padding-top: 5px; border-radius: 8px;" src=IMG_0653.jpeg alt=" image" width="500" height="350">
+                <p>
+                    04/04 - This is our robot with the motor driver, motors, 
+                    raspberry pi and lidar connected.It also has a third back 
+                    wheel for support. We will have a laser cut acrylic board 
+                    instead of cardboard. 
+                </p>
+                <hr>
+                <img style = "padding-left: 5px; padding-top: 5px; border-radius: 8px;" src=IMG_0837.jpg alt=" image" width="500" height="350">
+                <img style = "padding-left: 5px; padding-top: 5px; border-radius: 8px;" src=IMG_0836.jpg alt=" image" width="500" height="350">
+                <p>
+                    04/26 - This is our robot with the laser cut acrylic board, 
+                    as well as the Pi, motor driver, voltage regulator, and motor 
+                    driver. The underside is also fitted with a voltage regulator
+                    for the vacuum, the vacuum itself, and a battery pack. 
+                </p>
+                <hr>
+                <img style = "padding-left: 5px; padding-top: 5px; border-radius: 8px;" src=IMG_0835.jpg alt=" image" width="500" height="350">
+                <p>
+                    05/1 - This is our finished robot. There is now a LIPO attached, bus, 
+                    and completed wiring. The code has been uploaded to a seperate repo. 
+                    Attached below is a video demo of it moving through the colony space,
+                    as well as a video of it moving with its spiral capabilities. 
+                </p>
+                <video width="400" controls>
+                    <source src="IMG_0691.MOV" type="video/mp4">
+                </video>
+                <video width="400" controls>
+                    <source src="IMG_0655.mov" type="video/mp4">
+                </video>
+
+        </div>
+
+    </body>
+</html>
