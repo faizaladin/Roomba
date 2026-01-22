@@ -9,15 +9,10 @@ Our goal for this project is to create an autonomous vacuum that can clean in an
 
 The robot moves in a spiral manner, starting in the center and working its way through the space while avoiding obstacles. It uses two wheels as its effectors and performs avoidance pivots when it encounters walls.
 
+https://github.com/user-attachments/assets/ef12e600-cf8f-40c6-9c61-d2b31cab1fb7
+
 ## Usage
+
 To start the autonomous routine, run the following command:
 ```bash
 python move.py
-
-
-Uploading IMG_0691.MOV…
-
-
-
-https://github.com/user-attachments/assets/819ca766-6b2c-4fba-890b-b649a4080bd9
-
