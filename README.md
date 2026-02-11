@@ -22,7 +22,9 @@ https://github.com/user-attachments/assets/cff132df-c4f4-40fb-ab70-eb8857d36190
 ## Usage
 
 To start the autonomous routine, run the following command:
-```bash
+```
 python move.py
+```
+
 
 
